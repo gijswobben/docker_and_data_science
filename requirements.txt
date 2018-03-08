@@ -1,0 +1,4 @@
+nameko
+numpy
+sklearn
+scipy
