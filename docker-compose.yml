@@ -1,0 +1,27 @@
+version: "2"
+
+# List of all services
+services:
+
+  # Define the message bus
+  messagebus:
+    image: rabbitmq:3
+    ports:
+      - "5672:5672"
+      - "8080:15672"
+
+  # Define our own REST service
+  irisclassifier:
+    image: iris_classifier_service
+    build:
+      dockerfile: Dockerfile_REST
+    ports:
+      - "8000:8000"
+
+  # Define our own messagebus service
+  irisclassifier_messagebus:
+    image: iris_classifier_messagebus_service
+    build:
+      dockerfile: Dockerfile_messagebus
+    depends_on:
+      - messagebus
