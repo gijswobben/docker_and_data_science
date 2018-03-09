@@ -14,6 +14,7 @@ services:
   irisclassifier:
     image: iris_classifier_service
     build:
+      context: .
       dockerfile: Dockerfile_REST
     ports:
       - "8000:8000"
@@ -22,6 +23,7 @@ services:
   irisclassifier_messagebus:
     image: iris_classifier_messagebus_service
     build:
+      context: .
       dockerfile: Dockerfile_messagebus
     depends_on:
       - messagebus
